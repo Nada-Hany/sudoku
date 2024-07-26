@@ -1,23 +1,45 @@
 import cell
 
 class Sudoku:
-    def __init__(self) -> None:
-       self.size = 9
+    def __init__(self, list = []) -> None:
+        self.size = 9
     #    self.CELLWIDTH= CELLWIDTH
     #    self.XOFFSET = XOFFSET
     #    self.YOFFSET = YOFFSET
-       self.map =[[cell.Cell(x, y) for x in range (9)] for y in range (9)]
-    
+        self.map =[[cell.Cell(x, y) for x in range (9)] for y in range (9)]
+        self.list = list
     # def __init__(self) -> None:
     #     self.map =[[cell.Cell(x, y) for x in range (9)]for y in range (9)]
 
+
     
+    def initalizeSudoku(self):
+        for x in range (9):
+            for y in range (9):
+                if(self.list[x][y] != 0):
+                    self.map[x][y] = self.list[x][y]
+                    self.map[x][y].isFixed = True
+
     def getSudoku(self):
         return self.map
 
-    def changeValue(self, x, y, value):
+    # to set un-changeable values
+    def setValue(self, x, y, value):
         self.map[x][y].value = value
         self.map[x][y].isFixed = True
+
+    def changeValue(self, x, y, value):
+        # x and y are one based
+        if(not self.map[x-1][y-1].isFixed):
+            if(self.validMove(x-1, y-1, value)):
+                self.map[x-1][y-1].value = value
+                print("changed successfully\n")
+            else:
+                print("un-valid move")
+
+        else:
+            print("fixed cell cannot be changed!\n")
+        self.display()
 
     def getValue(self, x, y):
         return self.map[x][y].value

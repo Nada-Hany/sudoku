@@ -1,5 +1,7 @@
 import sudoku
 from file import *
+
+
 map = sudoku.Sudoku()
 
 # map.changeValue(0, 2, 1)
@@ -41,7 +43,11 @@ map.changeValue(0, 7, 9)
 # print(check)
 # print(map.display())
 
-check = []
 file = open("structure.txt", "r")
-readStructure("structure.txt", check)
+# check = readStructure("structure.txt")
+# print(check)
+
+wantedFile = getFile("test__test.txt")
+print(wantedFile)
+check = readStructure(wantedFile)
 print(check)

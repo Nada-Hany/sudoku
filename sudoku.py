@@ -3,7 +3,7 @@ import cell
 class Sudoku:
     def __init__(self) -> None:
        self.size = 9
-    #   self.CELLWIDTH= CELLWIDTH
+    #    self.CELLWIDTH= CELLWIDTH
     #    self.XOFFSET = XOFFSET
     #    self.YOFFSET = YOFFSET
        self.map =[[cell.Cell(x, y) for x in range (9)] for y in range (9)]
